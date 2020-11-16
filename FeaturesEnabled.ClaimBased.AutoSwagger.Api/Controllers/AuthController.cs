@@ -15,16 +15,16 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
             _authorizeService = authorizeService;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok("Testing GET... all good.");
+        }
+
         [HttpPost]
         public IActionResult Validate(LoginModel model)
         {
             return Ok(_authorizeService.Authenticate(model));
-        }
-
-        [HttpGet]
-        public IActionResult Alive()
-        {
-            return Ok("Testing... all good.");
         }
     }
 }

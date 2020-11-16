@@ -58,7 +58,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models
         public const string Reader = "Reader";
         public const string None = "None";
     }
-    public static class ReaderStore
+    public static class DataStore
     {
         public static List<User> Users => new List<User>
         {

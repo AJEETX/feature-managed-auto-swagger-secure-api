@@ -1,10 +1,12 @@
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
 using Microsoft.FeatureManagement.Mvc;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 {
@@ -12,46 +14,51 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
     [Route("api/[controller]")]
     public class ReadersController : ControllerBase
     {
-        // The Roles expects a comma separated list of Role values
-        //[Authorize("ShouldBeAReader")]
         [FeatureGate(Features.Promotions)]
         [HttpGet]
-        public IActionResult Get()
+        [ProducesResponseType(typeof(List<Reader>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Get()
         {
-            var handler = new JwtSecurityTokenHandler();
-            string authHeader = Request.Headers["Authorization"];
-            authHeader = authHeader.Replace("Bearer ", "");
-            var jsonToken = handler.ReadToken(authHeader);
-            var tokenS = handler.ReadToken(authHeader) as JwtSecurityToken;
-            var id = tokenS.Claims.First(claim => claim.Type == "email")?.Value;
-            return Ok(ReaderStore.Readers);
+            await Task.Delay(10);
+            var token = new JwtSecurityTokenHandler().ReadToken(Request.Headers["Authorization"].ToString().Substring(7)) as JwtSecurityToken;
+            var id = token.Claims.First(claim => claim.Type == "email")?.Value;
+            return Ok(DataStore.Readers);
         }
-
+ 
         [Authorize(Roles = "Admin")]
         [Authorize("ShouldContainRole")]
         [HttpPost]
-        public List<Reader> Add()
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Post(Reader reader)
         {
-            var token = Request.Headers["Authorization"];
-            return ReaderStore.Readers;
+            await Task.Delay(10);
+            return CreatedAtRoute("GetTodo", new { id = reader.Id }, reader);
         }
 
         [Authorize(Roles = "Editor")]
         [Authorize("ShouldContainRole")]
         [HttpPut]
-        public List<Reader> Update()
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Put(string id, Reader reader)
         {
-            var token = Request.Headers["Authorization"];
-            return ReaderStore.Readers;
+            await Task.Delay(10);
+            return NoContent();
         }
 
 
         [Authorize(Roles = "Admin")]
         [HttpDelete]
-        public List<Reader> Delete()
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(string id)
         {
-            var token = Request.Headers["Authorization"];
-            return ReaderStore.Readers;
+            await Task.Delay(10);
+            return NoContent();
         }
     }
 }

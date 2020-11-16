@@ -19,7 +19,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services
 
         public virtual Model Authenticate(LoginModel credentials)
         {
-            var user = ReaderStore.Users.FirstOrDefault(x => x.EmailAddress == credentials.Email);
+            var user = DataStore.Users.FirstOrDefault(x => x.EmailAddress == credentials.Email);
 
             if (user != null)
             {

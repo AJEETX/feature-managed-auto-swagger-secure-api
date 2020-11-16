@@ -51,6 +51,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
                     });
 
                     config.AddPolicy("ShouldContainRole", options => options.RequireClaim(ClaimTypes.Role));
+                    
                     config.AddPolicy("ShouldBeAReader", options => {
                         options.RequireClaim(ClaimTypes.Role);
                         options.RequireRole("Reader");
