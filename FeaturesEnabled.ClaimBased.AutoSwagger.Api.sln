@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeaturesEnabled.ClaimBased.AutoSwagger.Api", "nswag-auto-secure-netcore\FeaturesEnabled.ClaimBased.AutoSwagger.Api.csproj", "{0943DBF6-5EDE-42BB-BF9D-E8181D75DEC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeaturesEnabled.ClaimBased.AutoSwagger.Api", "FeaturesEnabled.ClaimBased.AutoSwagger.Api\FeaturesEnabled.ClaimBased.AutoSwagger.Api.csproj", "{0943DBF6-5EDE-42BB-BF9D-E8181D75DEC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
