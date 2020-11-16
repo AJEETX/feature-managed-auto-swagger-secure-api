@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
+using Microsoft.FeatureManagement.Mvc;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 {
@@ -12,7 +13,8 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
     public class ReadersController : ControllerBase
     {
         // The Roles expects a comma separated list of Role values
-        [Authorize("ShouldBeAReader")]
+        //[Authorize("ShouldBeAReader")]
+        [FeatureGate(Features.Promotions)]
         [HttpGet]
         public IActionResult Get()
         {

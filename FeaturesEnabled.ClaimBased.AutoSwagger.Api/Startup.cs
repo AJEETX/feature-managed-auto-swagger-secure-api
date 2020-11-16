@@ -8,6 +8,7 @@ using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions;
 using System.Linq;
 using NSwag;
 using NSwag.Generation.Processors.Security;
+using Microsoft.FeatureManagement;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api
 {
@@ -27,7 +28,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api
             services.AddSingleton<ITokenService, TokenService>();
             services.AddCors();
             services.AddJwtBearerAuthentication();
-
+            services.AddFeatureManagement();
             services.AddRolesAndPolicyAuthorization();
 
             services.AddRouting();
