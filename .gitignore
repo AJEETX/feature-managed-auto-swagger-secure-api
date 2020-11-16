@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/nswag-auto-secure-netcore/ApiClient.cs
+/nswag-auto-secure-netcore/swagger.json
