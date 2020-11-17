@@ -24,8 +24,9 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IAuthorizeService, AuthorizeService>();
-            services.AddSingleton<ITokenService, TokenService>();
+            services.AddScoped<IAuthorizeService, AuthorizeService>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IProductService, ProductService>();
             services.AddCors();
             services.AddJwtBearerAuthentication();
             services.AddFeatureManagement();

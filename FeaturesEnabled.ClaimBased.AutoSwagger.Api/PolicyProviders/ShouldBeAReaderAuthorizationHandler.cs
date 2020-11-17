@@ -16,10 +16,9 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.PolicyProviders
         {
             if (!context.User.HasClaim(x => x.Type == ClaimTypes.Email)) return Task.CompletedTask;
 
-            var claim = context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
-            var emailAddress = claim.Value;
+            var claim = context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role);
 
-            if (DataStore.Readers.Any(x => x.EmailAddress == emailAddress))
+            if (claim.Value == Roles.Reader)
             {
                 context.Succeed(requirement);
             }
