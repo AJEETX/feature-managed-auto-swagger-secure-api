@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
+using FeaturesEnabled.ClaimBased.AutoSwagger.Api.PolicyProviders;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.PolicyProviders;
 using System.Security.Claims;
 using System.Text;
 
@@ -51,8 +51,9 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
                     });
 
                     config.AddPolicy("ShouldContainRole", options => options.RequireClaim(ClaimTypes.Role));
-                    
-                    config.AddPolicy("ShouldBeAReader", options => {
+
+                    config.AddPolicy("ShouldBeAReader", options =>
+                    {
                         options.RequireClaim(ClaimTypes.Role);
                         options.RequireRole("Reader");
                         options.RequireAuthenticatedUser();

@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "RolesAuthorizeApi": {
+    "FeaturesEnabled.ClaimBased.AutoSwagger.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

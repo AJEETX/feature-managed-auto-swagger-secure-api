@@ -9,6 +9,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models
         public const string PromotionDiscounts = "Promotion.Discounts";
         public const string UserSuggestions = "Suggestion.User";
     }
+
     public class Model
     {
         public bool IsSuccess { get; set; }
@@ -21,6 +22,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models
 
         public string AccessToken { get; set; }
     }
+
     public class LoginModel
     {
         public string Email { get; set; }
@@ -33,6 +35,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models
         public const int ExpiryInMinutes = 10;
         public const string key = "thiskeyisverylargetobreak";
     }
+
     [DataContract]
     public class Reader
     {
@@ -58,6 +61,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models
         public const string Reader = "Reader";
         public const string None = "None";
     }
+
     public static class DataStore
     {
         public static List<User> Users => new List<User>

@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
 using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 {

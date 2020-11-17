@@ -1,14 +1,14 @@
+using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions;
+using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services;
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions;
-using System.Linq;
+using Microsoft.FeatureManagement;
 using NSwag;
 using NSwag.Generation.Processors.Security;
-using Microsoft.FeatureManagement;
+using System.Linq;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api
 {

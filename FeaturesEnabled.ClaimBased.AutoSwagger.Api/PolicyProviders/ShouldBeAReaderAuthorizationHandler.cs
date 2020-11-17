@@ -1,14 +1,15 @@
+using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.PolicyProviders
 {
     public class ShouldBeAReaderRequirement : IAuthorizationRequirement
     {
     }
+
     public class ShouldBeAReaderAuthorizationHandler : AuthorizationHandler<ShouldBeAReaderRequirement>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ShouldBeAReaderRequirement requirement)

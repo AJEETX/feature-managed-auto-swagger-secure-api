@@ -1,12 +1,12 @@
+using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
-using Microsoft.FeatureManagement.Mvc;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 {
@@ -25,7 +25,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
             var id = token.Claims.First(claim => claim.Type == "email")?.Value;
             return Ok(DataStore.Readers);
         }
- 
+
         [Authorize(Roles = "Admin")]
         [Authorize("ShouldContainRole")]
         [HttpPost]
@@ -48,7 +48,6 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
             await Task.Delay(10);
             return NoContent();
         }
-
 
         [Authorize(Roles = "Admin")]
         [HttpDelete]

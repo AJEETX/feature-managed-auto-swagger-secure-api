@@ -1,5 +1,5 @@
-using Microsoft.IdentityModel.Tokens;
 using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -36,7 +36,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services
 
             return new AuthToken()
             {
-                AccessToken = "Bearer "+ accessToken,
+                AccessToken = "Bearer " + accessToken,
                 ExpiresIn = TokenConstants.ExpiryInMinutes
             };
         }

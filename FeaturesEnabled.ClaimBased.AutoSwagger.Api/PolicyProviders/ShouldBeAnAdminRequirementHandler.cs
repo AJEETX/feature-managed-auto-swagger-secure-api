@@ -9,6 +9,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.PolicyProviders
     public class ShouldBeAnAdminRequirement : IAuthorizationRequirement
     {
     }
+
     public class ShouldBeAnAdminRequirementHandler : AuthorizationHandler<ShouldBeAnAdminRequirement>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ShouldBeAnAdminRequirement requirement)
