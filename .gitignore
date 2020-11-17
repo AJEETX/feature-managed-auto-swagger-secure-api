@@ -340,3 +340,5 @@ ASALocalRun/
 healthchecksdb
 /nswag-auto-secure-netcore/ApiClient.cs
 /nswag-auto-secure-netcore/swagger.json
+/FeaturesEnabled.ClaimBased.AutoSwagger.Api/FeaturesEnabled.ClaimBased.AutoSwagger.Api.Client.cs
+/FeaturesEnabled.ClaimBased.AutoSwagger.Api/FeaturesEnabled.ClaimBased.AutoSwagger.Api.json

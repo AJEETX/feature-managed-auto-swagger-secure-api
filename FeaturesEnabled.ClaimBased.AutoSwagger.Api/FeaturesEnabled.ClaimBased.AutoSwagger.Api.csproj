@@ -16,7 +16,7 @@
 	  </PackageReference>
   </ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Core31) aspnetcore2openapi /assembly:$(TargetDir)$(AssemblyName).dll /output:swagger.json" />
-	        <Exec Command="nswag openapi2csclient /input:$(AssemblyName).json  /namespace:$(AssemblyName) /output:$(AssemblyName)Client.cs" />		
+		<Exec EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Core31) aspnetcore2openapi /assembly:$(TargetDir)$(AssemblyName).dll /output:$(AssemblyName).json" />
+	  <Exec EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="nswag openapi2csclient /input:$(AssemblyName).json /namespace:$(AssemblyName) /output:$(AssemblyName).Client.cs" />		
 	</Target>
 </Project>
