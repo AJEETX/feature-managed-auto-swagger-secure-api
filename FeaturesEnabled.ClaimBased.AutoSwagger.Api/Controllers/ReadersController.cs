@@ -18,6 +18,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(List<Reader>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Authorize("ShouldBeAReader")]
         public async Task<IActionResult> Get()
         {
             await Task.Delay(10);
