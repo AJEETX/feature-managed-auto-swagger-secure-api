@@ -1,7 +1,5 @@
 ﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
 using Microsoft.AspNetCore.Authorization;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -11,6 +9,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.PolicyProviders
     public class ShouldBeAnEditorRequirement : IAuthorizationRequirement
     {
     }
+
     public class ShouldBeAnEditorRequirementHandler : AuthorizationHandler<ShouldBeAnEditorRequirement>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ShouldBeAnEditorRequirement requirement)

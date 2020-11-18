@@ -1,5 +1,5 @@
-﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain;
+﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain;
+using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

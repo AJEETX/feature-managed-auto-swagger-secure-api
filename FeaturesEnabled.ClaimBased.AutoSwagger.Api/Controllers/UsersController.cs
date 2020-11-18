@@ -1,11 +1,11 @@
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
 using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain;
+using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 {
