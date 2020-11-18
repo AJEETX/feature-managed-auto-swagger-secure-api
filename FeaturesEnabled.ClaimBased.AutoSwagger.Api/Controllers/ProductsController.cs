@@ -33,11 +33,15 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(List<Product>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Authorize("ShouldBeAReader")]
         public async Task<IActionResult> GetById(int id)
         {
             await Task.Delay(10);
+            if (id <= 0) return BadRequest();
+
             var product = _productService.GetById(id);
 
             if (product == default) return NotFound();
@@ -45,47 +49,52 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
             return Ok(product);
         }
 
+        [HttpPost]
         [Authorize(Roles = "Admin")]
         [Authorize("ShouldContainRole")]
-        [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(Product product)
         {
+            if (product == default || !ModelState.IsValid) return BadRequest();
+
             await Task.Delay(10);
             _productService.Add(product);
+
             return CreatedAtRoute("", new { id = product.Id }, product);
         }
 
+        [HttpPut]
         [Authorize(Roles = "Editor")]
         [Authorize("ShouldContainRole")]
-        [HttpPut]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put(int id, Product product)
         {
-            await Task.Delay(10);
             var actualProduct = _productService.GetById(id);
 
             if (actualProduct == default) return NotFound();
 
-            _productService.Update(actualProduct);
+            await Task.Delay(10);
+            _productService.Update(product);
+
             return NoContent();
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
         {
-            await Task.Delay(10);
             var product = _productService.GetById(id);
 
             if (product == default) return NotFound();
 
+            await Task.Delay(10);
             _productService.Delete(id);
 
             return NoContent();

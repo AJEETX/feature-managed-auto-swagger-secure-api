@@ -26,6 +26,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api
         {
             services.AddScoped<IAuthorizeService, AuthorizeService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddCors();
             services.AddJwtBearerAuthentication();
