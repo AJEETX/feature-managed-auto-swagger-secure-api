@@ -20,7 +20,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         }
 
         [HttpGet]
-        [Authorize("ShouldBeAReader")]
+        [Authorize("ShouldContainRole")]
         [ProducesResponseType(typeof(List<User>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get()

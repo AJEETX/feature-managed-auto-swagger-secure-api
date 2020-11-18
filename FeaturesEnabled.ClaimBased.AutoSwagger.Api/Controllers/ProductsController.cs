@@ -22,21 +22,22 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 
         [FeatureGate(Features.Promotions)]
         [HttpGet]
+        [Authorize("ShouldContainRole")]
         [ProducesResponseType(typeof(List<Product>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [Authorize("ShouldBeAReader")]
         public async Task<IActionResult> Get()
         {
             await Task.Delay(10);
             return Ok(_productService.Products);
         }
 
+        [FeatureGate(Features.UserSuggestions)]
         [HttpGet("{id}")]
+        [Authorize("ShouldBeAReader")]
         [ProducesResponseType(typeof(List<Product>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [Authorize("ShouldBeAReader")]
         public async Task<IActionResult> GetById(int id)
         {
             await Task.Delay(10);

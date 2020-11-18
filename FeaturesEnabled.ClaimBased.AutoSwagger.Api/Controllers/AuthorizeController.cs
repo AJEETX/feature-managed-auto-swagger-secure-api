@@ -16,7 +16,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
             _authorizeService = authorizeService;
         }
 
-        [HttpPost()]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
