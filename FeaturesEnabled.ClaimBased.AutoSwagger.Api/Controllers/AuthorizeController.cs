@@ -2,6 +2,7 @@
 using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 {
@@ -29,12 +30,19 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         public IActionResult Validate(LoginModel model)
         {
             if (model == default || !ModelState.IsValid) return BadRequest("Incorrect login details");
+            try
+            {
+                var userToken = _authorizeService.Authenticate(model);
 
-            var userToken = _authorizeService.Authenticate(model);
+                if (!userToken.IsSuccess) return NotFound("credential(s) incorrect");
 
-            if (!userToken.IsSuccess) return NotFound("credential(s) incorrect");
-
-            return Ok(userToken);
+                return Ok(userToken);
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
     }
 }

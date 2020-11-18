@@ -28,7 +28,16 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         public async Task<IActionResult> Get()
         {
             await Task.Delay(10);
-            return Ok(_productService.Products);
+            try
+            {
+                var products = _productService.Products;
+                return Ok(products);
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
 
         [FeatureGate(Features.UserSuggestions)]
@@ -40,14 +49,21 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(int id)
         {
-            await Task.Delay(10);
             if (id <= 0) return BadRequest();
+            try
+            {
+                var product = _productService.GetById(id);
 
-            var product = _productService.GetById(id);
+                if (product == default) return NotFound();
+                await Task.Delay(10);
 
-            if (product == default) return NotFound();
-
-            return Ok(product);
+                return Ok(product);
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
 
         [HttpPost]
@@ -59,11 +75,18 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         public async Task<IActionResult> Post(Product product)
         {
             if (product == default || !ModelState.IsValid) return BadRequest();
+            try
+            {
+                _productService.Add(product);
+                await Task.Delay(10);
 
-            await Task.Delay(10);
-            _productService.Add(product);
-
-            return CreatedAtRoute("", new { id = product.Id }, product);
+                return CreatedAtRoute("", new { id = product.Id }, product);
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
 
         [HttpPut]
@@ -74,14 +97,24 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put(int id, Product product)
         {
-            var actualProduct = _productService.GetById(id);
+            if (id != product.Id || !ModelState.IsValid) return BadRequest();
 
-            if (actualProduct == default) return NotFound();
+            try
+            {
+                var actualProduct = _productService.GetById(id);
 
-            await Task.Delay(10);
-            _productService.Update(product);
+                if (actualProduct == default) return NotFound();
 
-            return NoContent();
+                await Task.Delay(10);
+                _productService.Update(product);
+
+                return NoContent();
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
 
         [HttpDelete]
@@ -91,14 +124,23 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
         {
-            var product = _productService.GetById(id);
+            if (id <= 0) return BadRequest();
+            try
+            {
+                var product = _productService.GetById(id);
 
-            if (product == default) return NotFound();
+                if (product == default) return NotFound();
 
-            await Task.Delay(10);
-            _productService.Delete(id);
+                await Task.Delay(10);
+                _productService.Delete(id);
 
-            return NoContent();
+                return NoContent();
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
     }
 }

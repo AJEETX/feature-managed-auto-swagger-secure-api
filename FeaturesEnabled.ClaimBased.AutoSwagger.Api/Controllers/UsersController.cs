@@ -25,7 +25,16 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get()
         {
-            return Ok(_userService.Users);
+            try
+            {
+                var users = _userService.Users;
+                return Ok(users);
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
 
         [HttpGet("{id}")]
@@ -36,14 +45,21 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [Authorize("ShouldBeAReader")]
         public async Task<IActionResult> GetById(int id)
         {
-            await Task.Delay(10);
             if (id <= 0) return BadRequest();
+            try
+            {
+                var user = _userService.GetById(id);
 
-            var user = _userService.GetById(id);
+                if (user == default) return NotFound();
+                await Task.Delay(10);
 
-            if (user == default) return NotFound();
-
-            return Ok(user);
+                return Ok(user);
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
 
         [HttpPost]
@@ -55,11 +71,18 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         public async Task<IActionResult> Post(User user)
         {
             if (user == default || !ModelState.IsValid) return BadRequest();
+            try
+            {
+                _userService.Add(user);
+                await Task.Delay(10);
 
-            await Task.Delay(10);
-            _userService.Add(user);
-
-            return CreatedAtRoute("", new { id = user.Id }, user);
+                return CreatedAtRoute("", new { id = user.Id }, user);
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
 
         [HttpPut]
@@ -70,14 +93,23 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put(int id, User user)
         {
-            var actualUser = _userService.GetById(id);
+            if (id != user.Id || !ModelState.IsValid) return BadRequest();
+            try
+            {
+                var actualUser = _userService.GetById(id);
 
-            if (actualUser == default) return NotFound();
+                if (actualUser == default) return NotFound();
 
-            await Task.Delay(10);
-            _userService.Update(user);
+                await Task.Delay(10);
+                _userService.Update(user);
 
-            return NoContent();
+                return NoContent();
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
 
         [HttpDelete]
@@ -87,14 +119,23 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
         {
-            var user = _userService.GetById(id);
+            if (id <= 0) return BadRequest();
+            try
+            {
+                var user = _userService.GetById(id);
 
-            if (user == default) return NotFound();
+                if (user == default) return NotFound();
 
-            await Task.Delay(10);
-            _userService.Delete(id);
+                await Task.Delay(10);
+                _userService.Delete(id);
 
-            return NoContent();
+                return NoContent();
+            }
+            catch
+            {
+                //log//
+                return StatusCode(500);
+            }
         }
     }
 }
