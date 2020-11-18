@@ -1,4 +1,4 @@
-﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
+﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using System.Security.Claims;

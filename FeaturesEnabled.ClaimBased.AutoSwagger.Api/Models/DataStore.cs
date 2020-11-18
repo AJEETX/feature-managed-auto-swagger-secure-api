@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models
+namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models
 {
     public static class DataStore
     {

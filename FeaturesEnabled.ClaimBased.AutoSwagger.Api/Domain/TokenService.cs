@@ -1,4 +1,4 @@
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
+﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services
+namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain
 {
     public interface ITokenService
     {

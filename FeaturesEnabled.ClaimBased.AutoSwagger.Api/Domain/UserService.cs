@@ -1,9 +1,10 @@
-﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
+﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services
+namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain
 {
     public interface IUserService
     {
@@ -17,6 +18,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services
 
         void Delete(int id);
     }
+
     internal class UserService : IUserService
     {
         public List<User> Users => DataStore.Users;

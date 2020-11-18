@@ -1,4 +1,4 @@
-﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
+﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
 using FeaturesEnabled.ClaimBased.AutoSwagger.Api.PolicyProviders;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;

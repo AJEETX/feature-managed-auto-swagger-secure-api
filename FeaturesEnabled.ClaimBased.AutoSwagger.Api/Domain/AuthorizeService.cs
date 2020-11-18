@@ -1,7 +1,7 @@
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
+﻿using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
 using System.Linq;
 
-namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services
+namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain
 {
     public interface IAuthorizeService
     {

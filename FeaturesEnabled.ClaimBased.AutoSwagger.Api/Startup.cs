@@ -1,5 +1,5 @@
 using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions;
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services;
+using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +21,6 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IAuthorizeService, AuthorizeService>();
@@ -32,7 +31,10 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api
             services.AddJwtBearerAuthentication();
             services.AddFeatureManagement();
             services.AddRolesAndPolicyAuthorization();
-
+            services.AddMvc().ConfigureApiBehaviorOptions(options =>
+            {
+                options.SuppressMapClientErrors = true;
+            });
             services.AddRouting();
 
             services.AddControllers();
@@ -58,7 +60,6 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

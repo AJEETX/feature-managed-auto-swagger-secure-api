@@ -1,5 +1,5 @@
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Models;
-using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Services;
+using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
+using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -96,6 +96,5 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 
             return NoContent();
         }
-
     }
 }
