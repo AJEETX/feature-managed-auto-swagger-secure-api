@@ -42,7 +42,6 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
             services.AddAuthorization(
                 config =>
                 {
-                    // Add a new Policy with requirement to check for Admin
                     config.AddPolicy("ShouldBeAnAdmin", options =>
                     {
                         options.RequireAuthenticatedUser();
@@ -50,7 +49,14 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
                         options.Requirements.Add(new ShouldBeAnAdminRequirement());
                     });
 
-                    config.AddPolicy("ShouldContainRole", options => options.RequireClaim(ClaimTypes.Role));
+                    config.AddPolicy("ShouldBeAnEditor", options =>
+                    {
+                        options.RequireClaim(ClaimTypes.Role);
+                        options.RequireRole("Reader");
+                        options.RequireAuthenticatedUser();
+                        options.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+                        options.Requirements.Add(new ShouldBeAReaderRequirement());
+                    });
 
                     config.AddPolicy("ShouldBeAReader", options =>
                     {
@@ -60,6 +66,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
                         options.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
                         options.Requirements.Add(new ShouldBeAReaderRequirement());
                     });
+                    config.AddPolicy("ShouldContainRole", options => options.RequireClaim(ClaimTypes.Role));
                 });
 
             return services;
