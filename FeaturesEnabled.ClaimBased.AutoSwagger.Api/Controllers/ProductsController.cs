@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 {
@@ -33,10 +34,10 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
                 var products = _productService.Products;
                 return Ok(products);
             }
-            catch
+            catch (Exception ex)
             {
                 //log//
-                return StatusCode(500);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -59,10 +60,10 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 
                 return Ok(product);
             }
-            catch
+            catch (Exception ex)
             {
                 //log//
-                return StatusCode(500);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -82,10 +83,10 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 
                 return CreatedAtRoute("", new { id = product.Id }, product);
             }
-            catch
+            catch (Exception ex)
             {
                 //log//
-                return StatusCode(500);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -110,10 +111,10 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 
                 return NoContent();
             }
-            catch
+            catch (Exception ex)
             {
                 //log//
-                return StatusCode(500);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -136,10 +137,10 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 
                 return NoContent();
             }
-            catch
+            catch (Exception ex)
             {
                 //log//
-                return StatusCode(500);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }

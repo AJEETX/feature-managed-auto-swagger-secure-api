@@ -38,10 +38,10 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
 
                 return Ok(userToken);
             }
-            catch
+            catch (Exception ex)
             {
                 //log//
-                return StatusCode(500);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }
