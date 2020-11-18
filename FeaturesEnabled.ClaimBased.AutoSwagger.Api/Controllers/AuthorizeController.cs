@@ -16,15 +16,25 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
             _authorizeService = authorizeService;
         }
 
+        /// <summary>
+        /// user login with email address
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>token</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Validate(LoginModel model)
         {
-            if (model == default || !ModelState.IsValid) return BadRequest();
+            if (model == default || !ModelState.IsValid) return BadRequest("Incorrect login details");
 
-            return Ok(_authorizeService.Authenticate(model));
+            var userToken = _authorizeService.Authenticate(model);
+
+            if (!userToken.IsSuccess) return NotFound("credential(s) incorrect");
+
+            return Ok(userToken);
         }
     }
 }
