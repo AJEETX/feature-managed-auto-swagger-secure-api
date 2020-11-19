@@ -23,6 +23,8 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [HttpGet]
         [Authorize("ShouldContainRole")]
         [ProducesResponseType(typeof(List<User>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get()
         {
@@ -41,6 +43,8 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(List<User>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Authorize("ShouldBeAReader")]
@@ -68,6 +72,8 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [Authorize("ShouldBeAnAdmin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(User user)
         {
@@ -90,6 +96,8 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [Authorize(Roles = "Editor")]
         [Authorize("ShouldContainRole")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put(int id, User user)
@@ -116,6 +124,8 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [HttpDelete]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
