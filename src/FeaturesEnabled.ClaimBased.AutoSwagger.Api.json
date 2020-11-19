@@ -18,7 +18,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginModel"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             }
           },
@@ -440,7 +440,7 @@
   },
   "components": {
     "schemas": {
-      "LoginModel": {
+      "LoginRequest": {
         "type": "object",
         "additionalProperties": false,
         "required": [

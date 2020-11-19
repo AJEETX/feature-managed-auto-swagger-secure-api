@@ -27,7 +27,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Validate(LoginModel model)
+        public IActionResult Validate(LoginRequest model)
         {
             if (model == default || !ModelState.IsValid) return BadRequest("Incorrect login details");
             try

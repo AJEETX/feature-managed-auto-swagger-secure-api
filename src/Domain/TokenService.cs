@@ -25,11 +25,11 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain
             };
 
             var token = new JwtSecurityToken(
-                issuer: TokenConstants.Issuer,
-                audience: TokenConstants.Audience,
+                issuer: Constants.Issuer,
+                audience: Constants.Audience,
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(TokenConstants.ExpiryInMinutes),
-                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(TokenConstants.key)), SecurityAlgorithms.HmacSha256)
+                expires: DateTime.Now.AddMinutes(Constants.ExpiryInMinutes),
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Constants.key)), SecurityAlgorithms.HmacSha256)
             );
 
             string accessToken = new JwtSecurityTokenHandler().WriteToken(token);
@@ -37,7 +37,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain
             return new AuthToken()
             {
                 AccessToken = "Bearer " + accessToken,
-                ExpiresIn = TokenConstants.ExpiryInMinutes
+                ExpiresIn = Constants.ExpiryInMinutes
             };
         }
     }

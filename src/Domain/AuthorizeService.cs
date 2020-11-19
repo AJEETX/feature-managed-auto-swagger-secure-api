@@ -5,7 +5,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain
 {
     public interface IAuthorizeService
     {
-        Model Authenticate(LoginModel credentials);
+        LoginResponse Authenticate(LoginRequest credentials);
     }
 
     internal class AuthorizeService : IAuthorizeService
@@ -17,20 +17,20 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain
             _tokenService = tokenService;
         }
 
-        public virtual Model Authenticate(LoginModel credentials)
+        public virtual LoginResponse Authenticate(LoginRequest credentials)
         {
             var user = DataStore.Users.FirstOrDefault(x => x.EmailAddress == credentials.Email);
 
             if (user != null)
             {
-                return new Model
+                return new LoginResponse
                 {
                     IsSuccess = true,
                     Token = _tokenService.Generate(user)
                 };
             }
 
-            return new Model { IsSuccess = false };
+            return new LoginResponse { IsSuccess = false };
         }
     }
 }

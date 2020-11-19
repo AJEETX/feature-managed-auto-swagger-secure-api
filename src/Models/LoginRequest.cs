@@ -2,7 +2,7 @@
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models
 {
-    public class LoginModel
+    public class LoginRequest
     {
         [Required]
         [Display(Name = "Email")]

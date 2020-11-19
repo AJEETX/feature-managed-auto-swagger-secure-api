@@ -35,7 +35,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
             return services;
         }
 
-        public static IServiceCollection AddCustomServices(this IServiceCollection services)
+        private static IServiceCollection AddCustomServices(this IServiceCollection services)
         {
             services.AddScoped<IAuthorizeService, AuthorizeService>();
             services.AddScoped<ITokenService, TokenService>();
@@ -44,7 +44,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
             return services;
         }
 
-        public static IServiceCollection AddOpenApiDoc(this IServiceCollection services)
+        private static IServiceCollection AddOpenApiDoc(this IServiceCollection services)
         {
             services.AddOpenApiDocument(document =>
             {
@@ -68,7 +68,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
             return services;
         }
 
-        public static IServiceCollection AddJwtBearerAuthentication(this IServiceCollection services)
+        private static IServiceCollection AddJwtBearerAuthentication(this IServiceCollection services)
         {
             var builder = services.AddAuthentication(o =>
             {
@@ -84,9 +84,9 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
                     ValidateIssuer = true,
                     ValidateLifetime = true,
                     IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(TokenConstants.key)),
-                    ValidIssuer = TokenConstants.Issuer,
-                    ValidAudience = TokenConstants.Audience
+                        Encoding.UTF8.GetBytes(Constants.key)),
+                    ValidIssuer = Constants.Issuer,
+                    ValidAudience = Constants.Audience
                 };
             });
             services.AddScoped<IAuthorizationHandler, ShouldBeAnAdminRequirementHandler>();
@@ -94,7 +94,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
             return services;
         }
 
-        public static IServiceCollection AddRolesAndPolicyAuthorization(this IServiceCollection services)
+        private static IServiceCollection AddRolesAndPolicyAuthorization(this IServiceCollection services)
         {
             services.AddAuthorization(
                 config =>

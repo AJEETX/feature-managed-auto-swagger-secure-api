@@ -50,14 +50,14 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.ApiClient
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task ValidateAsync(LoginModel model)
+        public System.Threading.Tasks.Task ValidateAsync(LoginRequest model)
         {
             return ValidateAsync(model, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task ValidateAsync(LoginModel model, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task ValidateAsync(LoginRequest model, System.Threading.CancellationToken cancellationToken)
         {
             if (model == null)
                 throw new System.ArgumentNullException("model");
@@ -1375,7 +1375,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.ApiClient
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.3.1.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class LoginModel 
+    public partial class LoginRequest 
     {
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
