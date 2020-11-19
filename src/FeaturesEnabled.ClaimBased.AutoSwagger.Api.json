@@ -7,12 +7,23 @@
     "version": "v1"
   },
   "paths": {
-    "/api/Authorize": {
+    "/api/v{version}/Authorize": {
       "post": {
         "tags": [
           "Authorize"
         ],
         "operationId": "Authorize_Validate",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
+          }
+        ],
         "requestBody": {
           "x-name": "model",
           "content": {
@@ -41,12 +52,23 @@
         }
       }
     },
-    "/api/Products": {
+    "/api/v{version}/Products": {
       "get": {
         "tags": [
           "Products"
         ],
         "operationId": "Products_Get",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -60,6 +82,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": ""
           },
           "500": {
             "description": ""
@@ -76,6 +101,17 @@
           "Products"
         ],
         "operationId": "Products_Post",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
+          }
+        ],
         "requestBody": {
           "x-name": "product",
           "content": {
@@ -93,6 +129,12 @@
             "description": ""
           },
           "400": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
             "description": ""
           },
           "500": {
@@ -121,6 +163,15 @@
               "format": "int32"
             },
             "x-position": 1
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 3
           }
         ],
         "requestBody": {
@@ -140,6 +191,12 @@
             "description": ""
           },
           "404": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
             "description": ""
           },
           "500": {
@@ -168,6 +225,15 @@
               "format": "int32"
             },
             "x-position": 1
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
           }
         ],
         "responses": {
@@ -175,6 +241,12 @@
             "description": ""
           },
           "404": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
             "description": ""
           },
           "500": {
@@ -190,7 +262,7 @@
         ]
       }
     },
-    "/api/Products/{id}": {
+    "/api/v{version}/Products/{id}": {
       "get": {
         "tags": [
           "Products"
@@ -206,6 +278,15 @@
               "format": "int32"
             },
             "x-position": 1
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
           }
         ],
         "responses": {
@@ -225,6 +306,12 @@
           "400": {
             "description": ""
           },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
           "404": {
             "description": ""
           },
@@ -239,12 +326,23 @@
         ]
       }
     },
-    "/api/Users": {
+    "/api/v{version}/Users": {
       "get": {
         "tags": [
           "Users"
         ],
         "operationId": "Users_Get",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -258,6 +356,12 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
           },
           "500": {
             "description": ""
@@ -274,6 +378,17 @@
           "Users"
         ],
         "operationId": "Users_Post",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
+          }
+        ],
         "requestBody": {
           "x-name": "user",
           "content": {
@@ -291,6 +406,12 @@
             "description": ""
           },
           "400": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
             "description": ""
           },
           "500": {
@@ -319,6 +440,15 @@
               "format": "int32"
             },
             "x-position": 1
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 3
           }
         ],
         "requestBody": {
@@ -335,6 +465,12 @@
         },
         "responses": {
           "400": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
             "description": ""
           },
           "404": {
@@ -366,10 +502,25 @@
               "format": "int32"
             },
             "x-position": 1
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
           }
         ],
         "responses": {
           "400": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
             "description": ""
           },
           "404": {
@@ -388,7 +539,7 @@
         ]
       }
     },
-    "/api/Users/{id}": {
+    "/api/v{version}/Users/{id}": {
       "get": {
         "tags": [
           "Users"
@@ -404,6 +555,15 @@
               "format": "int32"
             },
             "x-position": 1
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 2
           }
         ],
         "responses": {
@@ -421,6 +581,12 @@
             }
           },
           "400": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
             "description": ""
           },
           "404": {

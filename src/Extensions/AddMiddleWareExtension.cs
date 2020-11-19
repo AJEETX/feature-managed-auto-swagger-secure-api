@@ -3,6 +3,8 @@ using FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models;
 using FeaturesEnabled.ClaimBased.AutoSwagger.Api.PolicyProviders;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
 using Microsoft.IdentityModel.Tokens;
@@ -18,11 +20,8 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
     {
         public static IServiceCollection AddMiddleWares(this IServiceCollection services)
         {
-            services.AddCustomServices();
-            services.AddCors();
-            services.AddJwtBearerAuthentication();
+            services.AddCors().AddCustomServices().AddJwtBearerAuthentication().AddRolesAndPolicyAuthorization().AddOpenApiDoc().AddApiVersion();
             services.AddFeatureManagement();
-            services.AddRolesAndPolicyAuthorization();
             services.AddMvc().ConfigureApiBehaviorOptions(options =>
             {
                 options.SuppressMapClientErrors = true;
@@ -31,7 +30,21 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
 
             services.AddControllers();
 
-            services.AddOpenApiDoc();
+            return services;
+        }
+
+        private static IServiceCollection AddApiVersion(this IServiceCollection services)
+        {
+            services.AddApiVersioning(config =>
+            {
+                // Specify the default API Version as 1.0
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                // If the client hasn't specified the API version in the request, use the default API version number
+                config.AssumeDefaultVersionWhenUnspecified = true;
+                // Advertise the API versions supported for the particular endpoint
+                config.ReportApiVersions = true;
+                config.ApiVersionReader = new HeaderApiVersionReader("v");
+            });
             return services;
         }
 
