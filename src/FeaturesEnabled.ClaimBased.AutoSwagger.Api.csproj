@@ -10,14 +10,14 @@
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.6.0" />
-	  <PackageReference Include="NSwag.AspNetCore" Version="13.8.2" />
-	  <PackageReference Include="NSwag.MSBuild" Version="13.8.2">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
+    <PackageReference Include="NSwag.AspNetCore" Version="13.8.2" />
+    <PackageReference Include="NSwag.MSBuild" Version="13.8.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Core31) aspnetcore2openapi /assembly:$(TargetDir)$(AssemblyName).dll /output:$(AssemblyName).json" />
-	  <Exec EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="nswag openapi2csclient /input:$(AssemblyName).json /namespace:$(AssemblyName)Client /output:$(AssemblyName).Client.cs" />		
-	</Target>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Core31) aspnetcore2openapi /assembly:$(TargetDir)$(AssemblyName).dll /output:$(AssemblyName).json" />
+    <Exec EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="nswag openapi2csclient /input:$(AssemblyName).json /namespace:$(AssemblyName)Client /output:$(AssemblyName).Client.cs" />
+  </Target>
 </Project>

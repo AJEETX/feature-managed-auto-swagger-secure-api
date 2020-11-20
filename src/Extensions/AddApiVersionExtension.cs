@@ -16,7 +16,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
                 config.AssumeDefaultVersionWhenUnspecified = true;
                 // Advertise the API versions supported for the particular endpoint
                 config.ReportApiVersions = true;
-                config.ApiVersionReader = new HeaderApiVersionReader("v");
+                config.ApiVersionReader = new HeaderApiVersionReader("v1");
             });
             return services;
         }
