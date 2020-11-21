@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Extensions
 {
-    public static partial class AddOpenApiDocExtnesion
+    public static partial class AddOpenApiDocExtension
     {
         public static IServiceCollection AddOpenApiDoc(this IServiceCollection services)
         {

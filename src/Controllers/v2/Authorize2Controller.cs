@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers.v1
+namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers.v2
 {
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/authorize")]
     [ApiController]
     public class AuthorizeController : ControllerBase
@@ -23,13 +23,13 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers.v1
         /// </summary>
         /// <param name="model"></param>
         /// <returns>token</returns>
-        [HttpPost]
-        [MapToApiVersion("1.0")]
+        [HttpPost("verify")]
+        [MapToApiVersion("2.0")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Validate(LoginRequest model)
+        public IActionResult Verify(LoginRequest model)
         {
             if (model == default || !ModelState.IsValid) return BadRequest("Incorrect login details");
             try
