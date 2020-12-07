@@ -30,19 +30,19 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Models
             new Product
             {
                 Id=101,
-                 Name="Product1",
+                 ProductName="Product1",
                  Description="Description1"
             },
             new Product
             {
                 Id=102,
-                 Name="Product2",
+                 ProductName="Product2",
                  Description="Description2"
             },
             new Product
             {
                 Id=103,
-                 Name="Product3",
+                 ProductName="Product3",
                  Description="Description3"
             }
             };

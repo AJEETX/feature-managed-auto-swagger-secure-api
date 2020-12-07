@@ -37,7 +37,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Core.Domain
         {
             var actualProduct = GetById(product.Id);
 
-            actualProduct.Name = product.Name;
+            actualProduct.ProductName = product.ProductName;
 
             actualProduct.Description = product.Description;
         }
