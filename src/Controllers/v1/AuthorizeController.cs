@@ -46,5 +46,30 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api.Controllers.v1
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+        /// <summary>
+        /// user login with email address
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>token</returns>
+        [HttpPost("Login")]
+        [MapToApiVersion("1.0")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Login(LoginRequest model)
+        {
+            if (model == default || !ModelState.IsValid) return BadRequest("Incorrect login details");
+            try
+            {
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                //log//
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
     }
 }

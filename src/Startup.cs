@@ -17,7 +17,7 @@ namespace FeaturesEnabled.ClaimBased.AutoSwagger.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMiddleWares();
+            services.AddMiddleWares(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
